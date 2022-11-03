@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/03 11:33:03 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/03 17:20:13 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ MAKEFLAGS = --no-print-directory
 
 NAME = fdf
 
-SRC =	fdf.c
+SRC =	fdf.c \
+		draw_utils.c
 
 OBJ = ${SRC:.c=.o}
 
