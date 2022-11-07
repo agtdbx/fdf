@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/04 14:09:13 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/07 15:21:37 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ MAKEFLAGS = --no-print-directory
 
 NAME = fdf
 
-SRC =	fdf.c \
-		draw_utils.c \
-		parsing.c \
-		parsing2.c \
-		color.c \
-		projection.c
+SRC =	mandatory/fdf.c \
+		mandatory/draw_utils.c \
+		mandatory/parsing.c \
+		mandatory/parsing2.c \
+		mandatory/color.c \
+		mandatory/projection.c \
+		mandatory/utils.c
 
 OBJ = ${SRC:.c=.o}
 

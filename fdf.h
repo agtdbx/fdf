@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 11:27:18 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/07 14:02:06 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ typedef struct s_vars
 	int		map_h;
 	double	x;
 	double	y;
-	double	angle;
+	double	angle_x;
+	double	angle_y;
 	double	zoom;
+	int		redraw;
 }	t_vars;
 
 typedef struct s_color
@@ -65,10 +67,9 @@ typedef struct s_color
 }	t_color;
 
 // fdf.c
-void	free_vars(t_vars *vars);
 int		mlx_close(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
-int	mouse_hook(int mousecode, int x, int y, t_vars *vars);
+int		mouse_hook(int mousecode, int x, int y, t_vars *vars);
 int		render(t_vars *vars);
 int		main(int argc, char **argv);
 
@@ -80,7 +81,7 @@ int		smouth_color(t_pixel start, t_pixel end, t_pixel current);
 // draw_utils.c
 void	draw_pixel(t_data data, int x, int y, int color);
 void	draw_line(t_vars *vars, t_pixel start, t_pixel end);
-void	draw_circle(t_vars *vars, t_pixel center, int radius, int width);
+void	clear_screen(t_vars *vars);
 
 // projection.c
 void	init_proj(t_vars *vars);
@@ -95,5 +96,10 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv);
 // parsing2.c
 t_point	*add_value(t_point *tab, int size, t_point value);
 void	add_line(t_vars *vars, t_point *line);
+int		value_of_char(char c, char *base);
+int		atoi_hex(char *nptr, char *base);
+
+// utils.c
+void	free_vars(t_vars *vars);
 
 #endif
