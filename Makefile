@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/07 15:21:37 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/07 15:47:56 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,20 @@ SRC =	mandatory/fdf.c \
 		mandatory/projection.c \
 		mandatory/utils.c
 
+SRC_BONUS =	bonus/fdf_bonus.c \
+			bonus/draw_utils_bonus.c \
+			bonus/parsing_bonus.c \
+			bonus/parsing2_bonus.c \
+			bonus/color_bonus.c \
+			bonus/projection_bonus.c \
+			bonus/utils_bonus.c \
+			bonus/space_operation_bonus.c
+
 OBJ = ${SRC:.c=.o}
+ifdef BONUS
+	OBJ = ${SRC_BONUS:.c=.o}
+endif
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror
@@ -41,7 +54,7 @@ all : $(NAME)
 
 clean :
 	@cd libft && make clean
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean : clean
 	@cd libft && make fclean
@@ -50,4 +63,7 @@ fclean : clean
 re : fclean $(NAME)
 	@cd libft && make re
 
-.PHONY: all clean fclean re
+bonus :
+	@make BONUS=42
+
+.PHONY: all clean fclean re bonus
