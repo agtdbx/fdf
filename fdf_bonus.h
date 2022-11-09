@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 13:33:12 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:28:42 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int		smouth_color(t_pixel start, t_pixel end, t_pixel current);
 // draw_utils_bonus.c
 void	draw_pixel(t_data data, int x, int y, int color);
 void	draw_line(t_vars *vars, t_pixel start, t_pixel end);
-void	clear_screen(t_vars *vars);
+void	draw_rect(t_vars *vars, t_pixel pos, int width, int height);
 
 // projection_bonus.c
 void	init_proj(t_vars *vars);

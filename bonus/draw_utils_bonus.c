@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:07:20 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 13:07:19 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:29:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,22 @@ void	draw_line(t_vars *vars, t_pixel start, t_pixel end)
 	}
 }
 
-void	clear_screen(t_vars *vars)
+void	draw_rect(t_vars *vars, t_pixel pos, int width, int height)
 {
 	t_pixel	pa;
 	t_pixel	pb;
 	int		y;
 
 	y = 0;
-	pa.x = 0;
-	pa.color = 0;
-	pb.x = 1920;
-	pb.color = 0;
-	while (y < 1080)
+	pa.x = pos.x;
+	pa.color = pos.color;
+	pb.x = pos.x + width;
+	pb.color = pos.color;
+	while (y < height)
 	{
-		pa.y = y;
-		pb.y = y;
+		pa.y = pos.y + y;
+		pb.y = pos.y + y;
 		draw_line(vars, pa, pb);
 		y++;
 	}
-	vars->map.redraw = 0;
 }

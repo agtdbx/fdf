@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 13:32:57 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:31:00 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,20 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 // render function
 int	render(t_vars *vars)
 {
-	draw_render_iso(vars);
+	t_pixel	p;
+
+	if (vars->map.autorotation)
+		rotate_iso(vars, 1.0, 'z');
+	if (vars->map.redraw)
+	{
+		p.x = 0;
+		p.y = 0;
+		p.color = 0;
+		vars->map.redraw = 0;
+		draw_rect(vars, p, 1920, 1080);
+		draw_render_iso(vars);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	}
 	return (0);
 }
 

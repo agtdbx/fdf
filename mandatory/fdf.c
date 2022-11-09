@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:36:55 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:06:21 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	vars = get_map_from_agr(&vars, argv);
 	vars.map.x = 1920 / 2;
 	vars.map.y = 1080 / 2;
-	vars.map.zoom = 20.0;
+	vars.map.zoom = 1080.0 / vars.map.w;
 	vars.map.redraw = 1;
 	init_proj(&vars);
 	calculate_projection(&vars);

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:37:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 11:38:13 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 15:08:08 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,23 @@ void	first_zoom(t_vars *vars)
 {
 	int		i;
 	int		j;
+	double	zoooooooooom;
 
+	zoooooooooom = 1080.0 / vars->map.w;
 	i = 0;
 	while (i < vars->map.h)
 	{
 		j = 0;
 		while (j < vars->map.w)
 		{
-			vars->map.map[i][j].x *= 20;
-			vars->map.map[i][j].y *= 20;
-			vars->map.map[i][j].z *= 2;
+			vars->map.map[i][j].x *= zoooooooooom;
+			vars->map.map[i][j].y *= zoooooooooom;
+			vars->map.map[i][j].z *= zoooooooooom / 10;
 			j++;
 		}
 		i++;
 	}
-	vars->map.zoom = 1.0;
-	vars->map.redraw = 1;
+	vars->map.zoom = zoooooooooom;
 }
 
 void	zoom_iso(t_vars *vars, double zoom)
@@ -108,7 +109,7 @@ void	zoom_iso(t_vars *vars, double zoom)
 		i++;
 	}
 	translate_iso(vars, tmp_x, tmp_y);
-	vars->map.zoom *= zoom;
 	calculate_projection_iso(vars);
+	vars->map.zoom *= zoom;
 	vars->map.redraw = 1;
 }
