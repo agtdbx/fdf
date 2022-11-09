@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 16:29:33 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:21:27 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,37 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == XK_Escape)
 		mlx_close(vars);
-	else if (keycode == XK_Up)
-		translate(vars, 0.0, -10.0);
-	else if (keycode == XK_Down)
-		translate(vars, 0.0, 10.0);
-	else if (keycode == XK_Left)
-		translate(vars, -10.0, 0.0);
-	else if (keycode == XK_Right)
-		translate(vars, 10.0, 0.0);
+	else if (keycode == XK_w)
+		translate_iso(vars, 0, 10.0);
+	else if (keycode == XK_s)
+		translate_iso(vars, 0, -10.0);
+	else if (keycode == XK_a)
+		translate_iso(vars, 10.0, 0);
+	else if (keycode == XK_d)
+		translate_iso(vars, -10.0, 0);
+	else if (keycode == XK_u)
+		rotate_iso_x(vars, 1.0);
+	else if (keycode == XK_i)
+		rotate_iso_x(vars, -1.0);
+	else if (keycode == XK_j)
+		rotate_iso_y(vars, -1.0);
+	else if (keycode == XK_k)
+		rotate_iso_y(vars, 1.0);
+	else if (keycode == XK_n)
+		rotate_iso_z(vars, 1.0);
+	else if (keycode == XK_m)
+		rotate_iso_z(vars, -1.0);
+	else if (keycode == XK_p)
+		vars->autorotation = !vars->autorotation;
 	return (0);
 }
 
 int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 {
 	if (mousecode == 4)
-		zoom(vars, 1.0, x, y);
+		zoom_iso(vars, 1.1, x, y);
 	if (mousecode == 5)
-		zoom(vars, -1.0, x, y);
+		zoom_iso(vars, 1.0 / 1.1, x, y);
 	return (0);
 }
 
@@ -54,6 +68,8 @@ int	render(t_vars *vars)
 	int	x;
 	int	y;
 
+	if (vars->autorotation)
+		rotate_iso_z(vars, 1.0);
 	if (vars->redraw)
 	{
 		vars->redraw = 0;
@@ -87,13 +103,16 @@ int	main(int argc, char **argv)
 	vars = get_map_from_agr(&vars, argv);
 	vars.x = 0;
 	vars.y = 0;
-	vars.angle_x = 0.786;
-	vars.angle_y = 0.786;
-	vars.zoom = 20.0;
+	vars.angle_x = 0;
+	vars.angle_y = 0;
+	vars.angle_z = 0;
+	vars.zoom = 1.0;
 	vars.redraw = 1;
+	vars.autorotation = 0;
 	init_proj(&vars);
-	calculate_projection(&vars);
-	translate(&vars, 1920 / 2, 1080 / 2);
+	first_zoom(&vars);
+	first_translate_iso(&vars, -20.0 * (vars.map_w / 2), -20.0 * (vars.map_h / 2));
+	translate_iso(&vars, 1920.0 / 4.0, 1080.0 / 3.0);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
 	vars.img.img = mlx_new_image(vars.mlx, 1920, 1080);

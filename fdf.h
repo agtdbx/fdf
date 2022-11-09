@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 15:29:01 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:33:55 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,6 @@ typedef struct s_pixel
 	int		color;
 }	t_pixel;
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	t_data	img;
-	t_point	**map;
-	t_pixel	**proj;
-	int		map_w;
-	int		map_h;
-	double	x;
-	double	y;
-	double	angle_x;
-	double	angle_y;
-	double	zoom;
-	int		redraw;
-}	t_vars;
-
 typedef struct s_color
 {
 	int	r;
@@ -66,10 +49,29 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_map
+{
+	t_point	**map;
+	t_pixel	**proj;
+	int		w;
+	int		h;
+	double	x;
+	double	y;
+	double	zoom;
+	int		redraw;
+}	t_map;
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	t_data	img;
+	t_map	map;
+}	t_vars;
+
 // fdf.c
 int		mlx_close(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
-int		mouse_hook(int mousecode, int x, int y, t_vars *vars);
 int		render(t_vars *vars);
 int		main(int argc, char **argv);
 

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:42:22 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 15:29:04 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:13:11 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ int	combine_color(int color1, int color2, float percent1, float percent2)
 	t_color	c;
 	t_color	c1;
 	t_color	c2;
+	int		a;
 
+	a = color1 >> 24;
+	color1 -= (a << 24);
 	c1.r = color1 >> 16;
 	color1 -= (c1.r << 16);
 	c1.g = color1 >> 8;
 	color1 -= (c1.g << 8);
 	c1.b = color1;
+	a = color2 >> 24;
+	color2 -= (a << 24);
 	c2.r = color2 >> 16;
 	color2 -= (c2.r << 16);
 	c2.g = color2 >> 8;

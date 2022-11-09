@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/02 17:09:08 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/08 08:52:00 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRC =	ft_isalpha.c \
 
 OBJ = ${SRC:.c=.o}
 
-CC = cc
+CC = clang
 CFLAGS = -g -Wall -Wextra -Werror
 INCLUDE = -I .
 

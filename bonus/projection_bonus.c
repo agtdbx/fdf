@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:08:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 16:23:44 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 09:55:11 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_proj(t_vars *vars)
 	}
 }
 
-void	calculate_projection(t_vars *vars)
+void	calculate_projection_iso(t_vars *vars)
 {
 	int		x;
 	int		y;
@@ -54,15 +54,9 @@ void	calculate_projection(t_vars *vars)
 		while (x < vars->map_w)
 		{
 			pt = vars->map[y][x];
-			pt.x = (pt.x - vars->map_w / 2) * vars->zoom;
-			pt.y = (pt.y - vars->map_h / 2) * vars->zoom;
-			pt.z *= vars->zoom / 10;
-			vars->proj[y][x].x = (pt.x - pt.y) * cos(0.786);
-			vars->proj[y][x].y = (pt.x + pt.y) * sin(0.7) - pt.z;
-			vars->proj[y][x].x += vars->x;
-			vars->proj[y][x].y += vars->y;
-			vars->proj[y][x].color = create_rgb(255 + pt.z,
-					255 + pt.z, 255 - pt.z);
+			vars->proj[y][x].x = (pt.x - pt.y);
+			vars->proj[y][x].y = (pt.x + pt.y) * sin(0.8) - pt.z;
+			vars->proj[y][x].color = pt.color;
 			x++;
 		}
 		y++;

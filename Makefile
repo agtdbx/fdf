@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/07 15:47:56 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/08 10:51:56 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC_BONUS =	bonus/fdf_bonus.c \
 			bonus/color_bonus.c \
 			bonus/projection_bonus.c \
 			bonus/utils_bonus.c \
-			bonus/space_operation_bonus.c
+			bonus/space_operation_iso_bonus.c
 
 OBJ = ${SRC:.c=.o}
 ifdef BONUS
@@ -37,7 +37,7 @@ ifdef BONUS
 endif
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
-CC = cc
+CC = clang
 CFLAGS = -g -Wall -Wextra -Werror
 LIBFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFTFLAGS = -Llibft -lft

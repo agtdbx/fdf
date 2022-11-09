@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 16:15:54 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:21:43 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ typedef struct s_vars
 	double	y;
 	double	angle_x;
 	double	angle_y;
+	double	angle_z;
 	double	zoom;
 	int		redraw;
+	int		autorotation;
 }	t_vars;
 
 typedef struct s_color
@@ -85,7 +87,7 @@ void	clear_screen(t_vars *vars);
 
 // projection_bonus.c
 void	init_proj(t_vars *vars);
-void	calculate_projection(t_vars *vars);
+void	calculate_projection_iso(t_vars *vars);
 
 // parsing_bonus.c
 t_point	split_element_to_map_point(int x, int y, char *element);
@@ -96,14 +98,16 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv);
 // parsing2_bonus.c
 t_point	*add_value(t_point *tab, int size, t_point value);
 void	add_line(t_vars *vars, t_point *line);
-int		value_of_char(char c, char *base);
-int		atoi_hex(char *nptr, char *base);
 
 // utils_bonus.c
 void	free_vars(t_vars *vars);
 
 // space_operation_bonus.c
-void	translate(t_vars *vars, double x, double y);
-void	zoom(t_vars *vars, double zoom, int x, int y);
-
+void	first_translate_iso(t_vars *vars, double x, double y);
+void	translate_iso(t_vars *vars, double x, double y);
+void	first_zoom(t_vars *vars);
+void	zoom_iso(t_vars *vars, double zoom, int x, int y);
+void	rotate_iso_x(t_vars *vars, double angle);
+void	rotate_iso_y(t_vars *vars, double angle);
+void	rotate_iso_z(t_vars *vars, double angle);
 #endif

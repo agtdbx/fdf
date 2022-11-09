@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:07:20 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 14:00:59 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:37:10 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	clear_screen(t_vars *vars)
 		draw_line(vars, pa, pb);
 		y++;
 	}
+	vars->map.redraw = 0;
 }

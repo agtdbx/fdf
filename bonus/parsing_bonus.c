@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 15:29:28 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 09:56:32 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,11 @@
 t_point	split_element_to_map_point(int x, int y, char *element)
 {
 	t_point	mp;
-	int		i;
-	char	*color;
 
-	i = 0;
-	while (element[i] != '\0' && element[i] != ',')
-		i++;
-	if (element[i] == ',')
-	{
-		color = ft_substr(element, i + 3, 7);
-		mp.color = atoi_hex(color, "0123456789abcdef");
-		free(color);
-	}
-	else
-		mp.color = create_rgb(255, 255, 255);
 	mp.x = x;
 	mp.y = y;
 	mp.z = atoi(element);
+	mp.color = create_rgb(255 + mp.z, 255 + mp.z, 255 - mp.z);
 	return (mp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/07 14:03:56 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:36:55 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,35 +31,27 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
-{
-	(void)mousecode;
-	(void)x;
-	(void)y;
-	(void)vars;
-	return (0);
-}
-
 // render function
 int	render(t_vars *vars)
 {
 	int	x;
 	int	y;
 
-	if (vars->redraw)
+	if (vars->map.redraw)
 	{
-		vars->redraw = 0;
 		clear_screen(vars);
 		y = 0;
-		while (y < vars->map_h)
+		while (y < vars->map.h)
 		{
 			x = 0;
-			while (x < vars->map_w)
+			while (x < vars->map.w)
 			{
-				if (x < vars->map_w - 1)
-					draw_line(vars, vars->proj[y][x], vars->proj[y][x + 1]);
-				if (y < vars->map_h - 1)
-					draw_line(vars, vars->proj[y][x], vars->proj[y + 1][x]);
+				if (x < vars->map.w - 1)
+					draw_line(vars, vars->map.proj[y][x],
+						vars->map.proj[y][x + 1]);
+				if (y < vars->map.h - 1)
+					draw_line(vars, vars->map.proj[y][x],
+						vars->map.proj[y + 1][x]);
 				x++;
 			}
 			y++;
@@ -77,12 +69,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	vars = get_map_from_agr(&vars, argv);
-	vars.x = 1920 / 2;
-	vars.y = 1080 / 2;
-	vars.angle_x = 0.786;
-	vars.angle_y = 0.786;
-	vars.zoom = 20.0;
-	vars.redraw = 1;
+	vars.map.x = 1920 / 2;
+	vars.map.y = 1080 / 2;
+	vars.map.zoom = 20.0;
+	vars.map.redraw = 1;
 	init_proj(&vars);
 	calculate_projection(&vars);
 	vars.mlx = mlx_init();
@@ -92,7 +82,6 @@ int	main(int argc, char **argv)
 			&vars.img.line_length, &vars.img.endian);
 	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, mlx_close, &vars);
 	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	mlx_loop_hook(vars.mlx, render, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
