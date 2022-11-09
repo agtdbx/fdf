@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/08 10:51:56 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/09 13:10:04 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRC_BONUS =	bonus/fdf_bonus.c \
 			bonus/color_bonus.c \
 			bonus/projection_bonus.c \
 			bonus/utils_bonus.c \
-			bonus/space_operation_iso_bonus.c
+			bonus/space_operation_iso_bonus.c \
+			bonus/space_rotation_iso_bonus.c \
+			bonus/utils_iso.c
 
 OBJ = ${SRC:.c=.o}
 ifdef BONUS

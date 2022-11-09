@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:00:46 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 09:58:46 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:49:28 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ void	add_line(t_vars *vars, t_point *line)
 	int		i;
 
 	i = 0;
-	while (vars->map[i] != NULL)
+	while (vars->map.map[i] != NULL)
 		i++;
 	new_map = malloc(sizeof(t_point *) * (i + 2));
 	if (new_map == NULL)
 		return ;
 	i = 0;
-	while (vars->map[i] != NULL)
+	while (vars->map.map[i] != NULL)
 	{
-		new_map[i] = vars->map[i];
+		new_map[i] = vars->map.map[i];
 		i++;
 	}
 	new_map[i] = line;
 	new_map[i + 1] = NULL;
-	free(vars->map);
-	vars->map = new_map;
-	vars->map_h++;
+	free(vars->map.map);
+	vars->map.map = new_map;
+	vars->map.h++;
 }

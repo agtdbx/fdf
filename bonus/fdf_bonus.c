@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:21:27 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:32:57 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,68 +28,26 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == XK_Escape)
 		mlx_close(vars);
-	else if (keycode == XK_w)
-		translate_iso(vars, 0, 10.0);
-	else if (keycode == XK_s)
-		translate_iso(vars, 0, -10.0);
-	else if (keycode == XK_a)
-		translate_iso(vars, 10.0, 0);
-	else if (keycode == XK_d)
-		translate_iso(vars, -10.0, 0);
-	else if (keycode == XK_u)
-		rotate_iso_x(vars, 1.0);
-	else if (keycode == XK_i)
-		rotate_iso_x(vars, -1.0);
-	else if (keycode == XK_j)
-		rotate_iso_y(vars, -1.0);
-	else if (keycode == XK_k)
-		rotate_iso_y(vars, 1.0);
-	else if (keycode == XK_n)
-		rotate_iso_z(vars, 1.0);
-	else if (keycode == XK_m)
-		rotate_iso_z(vars, -1.0);
-	else if (keycode == XK_p)
-		vars->autorotation = !vars->autorotation;
+	else
+		key_iso(keycode, vars);
 	return (0);
 }
 
 int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 {
+	(void)x;
+	(void)y;
 	if (mousecode == 4)
-		zoom_iso(vars, 1.1, x, y);
+		zoom_iso(vars, 1.1);
 	if (mousecode == 5)
-		zoom_iso(vars, 1.0 / 1.1, x, y);
+		zoom_iso(vars, 1.0 / 1.1);
 	return (0);
 }
 
 // render function
 int	render(t_vars *vars)
 {
-	int	x;
-	int	y;
-
-	if (vars->autorotation)
-		rotate_iso_z(vars, 1.0);
-	if (vars->redraw)
-	{
-		vars->redraw = 0;
-		clear_screen(vars);
-		y = 0;
-		while (y < vars->map_h)
-		{
-			x = 0;
-			while (x < vars->map_w)
-			{
-				if (x < vars->map_w - 1)
-					draw_line(vars, vars->proj[y][x], vars->proj[y][x + 1]);
-				if (y < vars->map_h - 1)
-					draw_line(vars, vars->proj[y][x], vars->proj[y + 1][x]);
-				x++;
-			}
-			y++;
-		}
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
-	}
+	draw_render_iso(vars);
 	return (0);
 }
 
@@ -101,25 +59,14 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	vars = get_map_from_agr(&vars, argv);
-	vars.x = 0;
-	vars.y = 0;
-	vars.angle_x = 0;
-	vars.angle_y = 0;
-	vars.angle_z = 0;
-	vars.zoom = 1.0;
-	vars.redraw = 1;
-	vars.autorotation = 0;
-	init_proj(&vars);
-	first_zoom(&vars);
-	first_translate_iso(&vars, -20.0 * (vars.map_w / 2), -20.0 * (vars.map_h / 2));
-	translate_iso(&vars, 1920.0 / 4.0, 1080.0 / 3.0);
+	init_map_iso(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
 	vars.img.img = mlx_new_image(vars.mlx, 1920, 1080);
 	vars.img.addr = mlx_get_data_addr(vars.img.img, &vars.img.bits_per_pixel,
 			&vars.img.line_length, &vars.img.endian);
 	mlx_hook(vars.win, DestroyNotify, StructureNotifyMask, mlx_close, &vars);
-	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 2, 1L, &key_hook, &vars);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	mlx_loop_hook(vars.mlx, render, &vars);
 	mlx_loop(vars.mlx);

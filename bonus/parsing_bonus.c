@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 09:56:32 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:49:27 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void	parse_line(t_vars *vars, char **split_result)
 	i = 0;
 	while (split_result[i] != NULL)
 	{
-		value = split_element_to_map_point(i, vars->map_h, split_result[i]);
+		value = split_element_to_map_point(i, vars->map.h, split_result[i]);
 		tab = add_value(tab, i, value);
 		i++;
 	}
-	if (vars->map_w == 0)
-		vars->map_w = i;
+	if (vars->map.w == 0)
+		vars->map.w = i;
 	add_line(vars, tab);
 }
 
@@ -76,12 +76,12 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv)
 	int	fd;
 	int	is_read;
 
-	vars->map_w = 0;
-	vars->map_h = 0;
-	vars->map = malloc(sizeof(int *));
-	if (vars->map == NULL)
+	vars->map.w = 0;
+	vars->map.h = 0;
+	vars->map.map = malloc(sizeof(int *));
+	if (vars->map.map == NULL)
 		return (*vars);
-	vars->map[0] = NULL;
+	vars->map.map[0] = NULL;
 	fd = open(argv[1], O_RDWR);
 	if (fd == -1)
 		return (*vars);

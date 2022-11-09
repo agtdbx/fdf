@@ -6,18 +6,20 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:21:43 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:33:12 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "libft/libft.h"
 # include "mlx_linux/mlx.h"
 # include "mlx_linux/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
+
+# define PI 3.1415926535
 
 typedef struct s_data {
 	void	*img;
@@ -42,15 +44,19 @@ typedef struct s_pixel
 	int		color;
 }	t_pixel;
 
-typedef struct s_vars
+typedef struct s_color
 {
-	void	*mlx;
-	void	*win;
-	t_data	img;
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
+typedef struct s_map
+{
 	t_point	**map;
 	t_pixel	**proj;
-	int		map_w;
-	int		map_h;
+	int		w;
+	int		h;
 	double	x;
 	double	y;
 	double	angle_x;
@@ -59,14 +65,15 @@ typedef struct s_vars
 	double	zoom;
 	int		redraw;
 	int		autorotation;
-}	t_vars;
+}	t_map;
 
-typedef struct s_color
+typedef struct s_vars
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
+	void	*mlx;
+	void	*win;
+	t_data	img;
+	t_map	map;
+}	t_vars;
 
 // fdf_bonus.c
 int		mlx_close(t_vars *vars);
@@ -102,12 +109,18 @@ void	add_line(t_vars *vars, t_point *line);
 // utils_bonus.c
 void	free_vars(t_vars *vars);
 
-// space_operation_bonus.c
+// space_operation_iso_bonus.c
 void	first_translate_iso(t_vars *vars, double x, double y);
 void	translate_iso(t_vars *vars, double x, double y);
 void	first_zoom(t_vars *vars);
-void	zoom_iso(t_vars *vars, double zoom, int x, int y);
-void	rotate_iso_x(t_vars *vars, double angle);
-void	rotate_iso_y(t_vars *vars, double angle);
-void	rotate_iso_z(t_vars *vars, double angle);
+void	zoom_iso(t_vars *vars, double zoom);
+
+// space_rotation_iso_bonus.c
+void	rotate_iso(t_vars *vars, double angle, char c);
+
+// utils_iso.c
+void	key_iso(int keycode, t_vars *vars);
+void	init_map_iso(t_vars *vars);
+void	draw_render_iso(t_vars *vars);
+
 #endif

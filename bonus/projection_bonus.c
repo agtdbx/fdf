@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:08:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 09:55:11 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 10:49:30 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ void	init_proj(t_vars *vars)
 	int	x;
 	int	y;
 
-	vars->proj = malloc(sizeof(t_pixel *) * vars->map_h);
-	if (vars->proj == NULL)
+	vars->map.proj = malloc(sizeof(t_pixel *) * vars->map.h);
+	if (vars->map.proj == NULL)
 		return ;
 	y = 0;
-	while (y < vars->map_h)
+	while (y < vars->map.h)
 	{
-		vars->proj[y] = malloc(sizeof(t_pixel) * vars->map_w);
-		if (vars->proj[y] == NULL)
+		vars->map.proj[y] = malloc(sizeof(t_pixel) * vars->map.w);
+		if (vars->map.proj[y] == NULL)
 		{
 			free_vars(vars);
 			exit(0);
 		}
 		x = 0;
-		while (x < vars->map_w)
+		while (x < vars->map.w)
 		{
-			vars->proj[y][x].x = x * 10;
-			vars->proj[y][x].y = y * 10;
-			vars->proj[y][x].color = 255;
+			vars->map.proj[y][x].x = x * 10;
+			vars->map.proj[y][x].y = y * 10;
+			vars->map.proj[y][x].color = 255;
 			x++;
 		}
 		y++;
@@ -48,15 +48,15 @@ void	calculate_projection_iso(t_vars *vars)
 	t_point	pt;
 
 	y = 0;
-	while (y < vars->map_h)
+	while (y < vars->map.h)
 	{
 		x = 0;
-		while (x < vars->map_w)
+		while (x < vars->map.w)
 		{
-			pt = vars->map[y][x];
-			vars->proj[y][x].x = (pt.x - pt.y);
-			vars->proj[y][x].y = (pt.x + pt.y) * sin(0.8) - pt.z;
-			vars->proj[y][x].color = pt.color;
+			pt = vars->map.map[y][x];
+			vars->map.proj[y][x].x = (pt.x - pt.y);
+			vars->map.proj[y][x].y = (pt.x + pt.y) * sin(0.8) - pt.z;
+			vars->map.proj[y][x].color = pt.color;
 			x++;
 		}
 		y++;
