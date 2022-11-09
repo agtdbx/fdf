@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 14:28:42 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:13:18 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_map
 	int		h;
 	double	x;
 	double	y;
+	double	alt;
 	double	angle_x;
 	double	angle_y;
 	double	angle_z;
@@ -73,6 +74,7 @@ typedef struct s_vars
 	void	*win;
 	t_data	img;
 	t_map	map;
+	int		draw_menu;
 }	t_vars;
 
 // fdf_bonus.c
@@ -118,9 +120,12 @@ void	zoom_iso(t_vars *vars, double zoom);
 // space_rotation_iso_bonus.c
 void	rotate_iso(t_vars *vars, double angle, char c);
 
-// utils_iso.c
+// utils_iso_bonus.c
 void	key_iso(int keycode, t_vars *vars);
 void	init_map_iso(t_vars *vars);
 void	draw_render_iso(t_vars *vars);
+
+// menu_bonus.c
+void	draw_menu(t_vars *vars);
 
 #endif

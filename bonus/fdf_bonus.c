@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 14:31:00 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/09 16:14:49 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == XK_Escape)
 		mlx_close(vars);
+	else if (keycode == XK_Tab)
+	{
+		vars->draw_menu = !vars->draw_menu;
+		vars->map.redraw = 1;
+	}
 	else
 		key_iso(keycode, vars);
 	return (0);
@@ -60,6 +65,8 @@ int	render(t_vars *vars)
 		draw_rect(vars, p, 1920, 1080);
 		draw_render_iso(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+		if (vars->draw_menu)
+			draw_menu(vars);
 	}
 	return (0);
 }
@@ -72,6 +79,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	vars = get_map_from_agr(&vars, argv);
+	vars.draw_menu = 0;
 	init_map_iso(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "FDF");
