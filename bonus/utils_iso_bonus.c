@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:07:45 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 16:19:51 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:26:28 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	reset_iso(t_vars *vars)
 {
-	zoom_iso(vars, (1080.0 / vars->map.w) / vars->map.zoom);
-	rotate_iso(vars, -vars->map.angle_x, 'x');
-	rotate_iso(vars, -vars->map.angle_y, 'y');
-	rotate_iso(vars, -vars->map.angle_z, 'z');
-	translate_iso(vars, -vars->map.x, -vars->map.y);
-	translate_iso(vars, 1920.0 / 4.0, 1080.0 / 3.0);
+	free_map(vars);
+	init_map_iso(vars);
 	vars->map.redraw = 1;
 }
 
@@ -61,7 +57,9 @@ void	init_map_iso(t_vars *vars)
 	vars->map.zoom = 1.0;
 	vars->map.redraw = 1;
 	vars->map.autorotation = 0;
-	init_proj(vars);
+	paste_cpy_to_map(vars);
+	if (vars->map.proj == NULL)
+		init_proj(vars);
 	first_zoom(vars);
 	first_translate_iso(vars, -vars->map.zoom * (vars->map.w / 2),
 		-vars->map.zoom * (vars->map.h / 2));

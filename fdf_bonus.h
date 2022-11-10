@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 16:13:18 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:00:52 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_color
 typedef struct s_map
 {
 	t_point	**map;
+	t_point	**cpymap;
 	t_pixel	**proj;
 	int		w;
 	int		h;
@@ -109,7 +110,9 @@ t_point	*add_value(t_point *tab, int size, t_point value);
 void	add_line(t_vars *vars, t_point *line);
 
 // utils_bonus.c
+void	free_map(t_vars *vars);
 void	free_vars(t_vars *vars);
+void	paste_cpy_to_map(t_vars *vars);
 
 // space_operation_iso_bonus.c
 void	first_translate_iso(t_vars *vars, double x, double y);

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 15:55:51 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/10 09:07:34 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv)
 
 	vars->map.w = 0;
 	vars->map.h = 0;
-	vars->map.map = malloc(sizeof(int *));
-	if (vars->map.map == NULL)
+	vars->map.cpymap = malloc(sizeof(int *));
+	if (vars->map.cpymap == NULL)
 		return (*vars);
-	vars->map.map[0] = NULL;
+	vars->map.cpymap[0] = NULL;
 	fd = open(argv[1], O_RDWR);
 	if (fd == -1)
 		return (*vars);
