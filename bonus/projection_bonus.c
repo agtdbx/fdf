@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:08:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 08:47:14 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:00:23 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	calculate_projection_fps(t_vars *vars)
 		{
 			pt = vars->map.map[y][x];
 			vars->map.proj[y][x].x = pt.x;
-			vars->map.proj[y][x].y = 1080.0 / 2.0 - pt.z;
+			vars->map.proj[y][x].y = (1080.0 / 2.0) - pt.z;
 			vars->map.proj[y][x].color = pt.color;
 			x++;
 		}

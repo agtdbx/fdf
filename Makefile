@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/11 08:30:34 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/11 11:39:25 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,14 @@ SRC_BONUS =	bonus/fdf_bonus.c \
 			bonus/projection_bonus.c \
 			bonus/utils_bonus.c \
 			bonus/space_operation_iso_bonus.c \
-			bonus/space_rotation_iso_bonus.c \
+			bonus/space_rotation_bonus.c \
 			bonus/utils_iso_bonus.c \
 			bonus/menu_bonus.c \
 			bonus/utils_fps_bonus.c \
 			bonus/space_operation_fps_bonus.c \
 			bonus/draw_render_fast_bonus.c \
-			bonus/draw_render_exact_bonus.c
+			bonus/draw_render_exact_bonus.c \
+			bonus/camera_bonus.c
 
 OBJ = ${SRC:.c=.o}
 ifdef BONUS

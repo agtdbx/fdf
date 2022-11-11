@@ -6,18 +6,11 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:07:45 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 08:27:20 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 09:33:36 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
-
-void	reset_iso(t_vars *vars)
-{
-	free_map(vars);
-	init_map_iso(vars);
-	vars->map.redraw = 1;
-}
 
 void	key_iso(int keycode, t_vars *vars)
 {
@@ -45,6 +38,13 @@ void	key_iso(int keycode, t_vars *vars)
 		vars->map.autorotation = !vars->map.autorotation;
 	else if (keycode == XK_r)
 		reset_iso(vars);
+}
+
+void	reset_iso(t_vars *vars)
+{
+	free_map(vars);
+	init_map_iso(vars);
+	vars->map.redraw = 1;
 }
 
 void	init_map_iso(t_vars *vars)

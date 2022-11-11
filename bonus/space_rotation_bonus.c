@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:52:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 11:34:53 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 10:01:24 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,4 @@ void	apply_rotation_z(t_vars *vars, double angle)
 		i++;
 	}
 	vars->map.angle_z += angle;
-}
-
-void	rotate_iso(t_vars *vars, double angle, char c)
-{
-	double	tmp_x;
-	double	tmp_y;
-
-	tmp_x = vars->map.x;
-	tmp_y = vars->map.y;
-	translate_iso(vars, -tmp_x, -tmp_y);
-	if (c == 'x')
-		apply_rotation_x(vars, angle);
-	else if (c == 'y')
-		apply_rotation_y(vars, angle);
-	else if (c == 'z')
-		apply_rotation_z(vars, angle);
-	translate_iso(vars, tmp_x, tmp_y);
-	calculate_projection_iso(vars);
-	vars->map.redraw = 1;
 }

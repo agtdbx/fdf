@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:24:29 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 08:47:20 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:43:17 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_render_fast_0wh0(t_vars *vars)
 	while (y < vars->map.h)
 	{
 		x = vars->map.w - 1;
-		while (x > 0)
+		while (x >= 0)
 		{
 			if (x > 0)
 				draw_line(vars, vars->map.proj[y][x],
@@ -64,7 +64,7 @@ void	draw_render_fast_h00w(t_vars *vars)
 	int	y;
 
 	y = vars->map.h - 1;
-	while (y > 0)
+	while (y >= 0)
 	{
 		x = 0;
 		while (x < vars->map.w)
@@ -87,10 +87,10 @@ void	draw_render_fast_hw00(t_vars *vars)
 	int	y;
 
 	y = vars->map.h - 1;
-	while (y > 0)
+	while (y >= 0)
 	{
 		x = vars->map.w - 1;
-		while (x > 0)
+		while (x >= 0)
 		{
 			if (x > 0)
 				draw_line(vars, vars->map.proj[y][x],

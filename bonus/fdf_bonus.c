@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 16:43:33 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:41:05 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	key_hook(int keycode, t_vars *vars)
 	}
 	else if (vars->projection_mode == 0)
 		key_iso(keycode, vars);
+	else
+		key_fps(keycode, vars);
 	return (0);
 }
 
@@ -70,7 +72,7 @@ int	render(t_vars *vars)
 {
 	t_pixel	p;
 
-	if (vars->map.autorotation)
+	if (vars->map.autorotation && vars->projection_mode == 0)
 		rotate_iso(vars, 1.0, 'z');
 	if (vars->map.redraw)
 	{

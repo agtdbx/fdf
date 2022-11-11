@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:26:18 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 08:55:52 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:43:31 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_render_exact_00hw(t_vars *vars)
 		while (x < vars->map.w)
 		{
 			if (x < vars->map.w - 1 && y < vars->map.h - 1)
-				draw_hide_behind(vars, y * vars->map.h + x, 1, 1);
+				draw_hide_behind(vars, y * vars->map.w + x, 1, 1);
 			if (x < vars->map.w - 1)
 				draw_line(vars, vars->map.proj[y][x],
 					vars->map.proj[y][x + 1]);
@@ -46,10 +46,10 @@ void	draw_render_exact_0wh0(t_vars *vars)
 	while (y < vars->map.h)
 	{
 		x = vars->map.w - 1;
-		while (x > 0)
+		while (x >= 0)
 		{
 			if (x > 0 && y < vars->map.h - 1)
-				draw_hide_behind(vars, y * vars->map.h + x, 1, -1);
+				draw_hide_behind(vars, y * vars->map.w + x, 1, -1);
 			if (x > 0)
 				draw_line(vars, vars->map.proj[y][x],
 					vars->map.proj[y][x - 1]);
@@ -68,13 +68,13 @@ void	draw_render_exact_h00w(t_vars *vars)
 	int		y;
 
 	y = vars->map.h - 1;
-	while (y > 0)
+	while (y >= 0)
 	{
 		x = 0;
 		while (x < vars->map.w)
 		{
 			if (x < vars->map.w - 1 && y > 0)
-				draw_hide_behind(vars, y * vars->map.h + x, -1, 1);
+				draw_hide_behind(vars, y * vars->map.w + x, -1, 1);
 			if (x < vars->map.w - 1)
 				draw_line(vars, vars->map.proj[y][x],
 					vars->map.proj[y][x + 1]);
@@ -93,13 +93,13 @@ void	draw_render_exact_hw00(t_vars *vars)
 	int		y;
 
 	y = vars->map.h - 1;
-	while (y > 0)
+	while (y >= 0)
 	{
 		x = vars->map.w - 1;
-		while (x > 0)
+		while (x >= 0)
 		{
 			if (x > 0 && y > 0)
-				draw_hide_behind(vars, y * vars->map.h + x, -1, -1);
+				draw_hide_behind(vars, y * vars->map.w + x, -1, -1);
 			if (x > 0)
 				draw_line(vars, vars->map.proj[y][x],
 					vars->map.proj[y][x - 1]);

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 09:22:50 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 10:59:25 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_camera
+{
+	double	x;
+	double	y;
+	double	z;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
+}	t_camera;
+
 typedef struct s_map
 {
 	t_point	**map;
@@ -71,13 +81,14 @@ typedef struct s_map
 
 typedef struct s_vars
 {
-	void	*mlx;
-	void	*win;
-	t_data	img;
-	t_map	map;
-	int		draw_menu;
-	int		projection_mode;
-	int		draw_fast;
+	void		*mlx;
+	void		*win;
+	t_data		img;
+	t_map		map;
+	t_camera	cam;
+	int			draw_menu;
+	int			projection_mode;
+	int			draw_fast;
 }	t_vars;
 
 // fdf_bonus.c
@@ -122,24 +133,30 @@ void	init_proj(t_vars *vars);
 void	calculate_projection_iso(t_vars *vars);
 void	calculate_projection_fps(t_vars *vars);
 
+// space_rotation_bonus.c
+void	apply_rotation_x(t_vars *vars, double angle);
+void	apply_rotation_y(t_vars *vars, double angle);
+void	apply_rotation_z(t_vars *vars, double angle);
+
 // space_operation_iso_bonus.c
 void	first_translate_iso(t_vars *vars, double x, double y);
 void	translate_iso(t_vars *vars, double x, double y);
 void	first_zoom(t_vars *vars);
 void	zoom_iso(t_vars *vars, double zoom);
-
-// space_rotation_iso_bonus.c
 void	rotate_iso(t_vars *vars, double angle, char c);
-
-// utils_iso_bonus.c
-void	reset_iso(t_vars *vars);
-void	key_iso(int keycode, t_vars *vars);
-void	init_map_iso(t_vars *vars);
 
 // space_operation_fps_bonus.c
 void	translate_fps(t_vars *vars, double x, double y);
+void	zoom_fps(t_vars *vars, double zoom);
+void	rotate_fps(t_vars *vars, double angle, char c);
+
+// utils_iso_bonus.c
+void	key_iso(int keycode, t_vars *vars);
+void	reset_iso(t_vars *vars);
+void	init_map_iso(t_vars *vars);
 
 // utils_fps_bonus.c
+void	key_fps(int keycode, t_vars *vars);
 void	reset_fps(t_vars *vars);
 void	init_map_fps(t_vars *vars);
 
