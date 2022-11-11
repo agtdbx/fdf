@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:01:39 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 09:24:52 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:56:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,19 @@ void	paste_cpy_to_map(t_vars *vars)
 		}
 		y++;
 	}
+}
+
+void	draw_hide_behind(t_vars *vars, int pos, int next_y, int next_x)
+{
+	int		x;
+	int		y;
+	t_pixel	ps[4];
+
+	y = pos / vars->map.h;
+	x = pos % vars->map.h;
+	ps[0] = vars->map.proj[y][x];
+	ps[1] = vars->map.proj[y][x + next_x];
+	ps[2] = vars->map.proj[y + next_y][x + next_x];
+	ps[3] = vars->map.proj[y + next_y][x];
+	draw_polygon(vars, ps, 4, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 09:00:52 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 09:16:56 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_vars
 	t_data	img;
 	t_map	map;
 	int		draw_menu;
+	int		projection_mode;
+	int		draw_fast;
 }	t_vars;
 
 // fdf_bonus.c
@@ -94,10 +96,12 @@ int		smouth_color(t_pixel start, t_pixel end, t_pixel current);
 void	draw_pixel(t_data data, int x, int y, int color);
 void	draw_line(t_vars *vars, t_pixel start, t_pixel end);
 void	draw_rect(t_vars *vars, t_pixel pos, int width, int height);
+void	draw_polygon(t_vars *vars, t_pixel *lst, int nb_point, int color);
 
 // projection_bonus.c
 void	init_proj(t_vars *vars);
 void	calculate_projection_iso(t_vars *vars);
+void	calculate_projection_fps(t_vars *vars);
 
 // parsing_bonus.c
 t_point	split_element_to_map_point(int x, int y, char *element);
@@ -113,6 +117,7 @@ void	add_line(t_vars *vars, t_point *line);
 void	free_map(t_vars *vars);
 void	free_vars(t_vars *vars);
 void	paste_cpy_to_map(t_vars *vars);
+void	draw_hide_behind(t_vars *vars, int pos, int next_y, int next_x);
 
 // space_operation_iso_bonus.c
 void	first_translate_iso(t_vars *vars, double x, double y);
@@ -124,11 +129,32 @@ void	zoom_iso(t_vars *vars, double zoom);
 void	rotate_iso(t_vars *vars, double angle, char c);
 
 // utils_iso_bonus.c
+void	reset_iso(t_vars *vars);
 void	key_iso(int keycode, t_vars *vars);
 void	init_map_iso(t_vars *vars);
-void	draw_render_iso(t_vars *vars);
 
 // menu_bonus.c
 void	draw_menu(t_vars *vars);
+
+// utils_fps_bonus.c
+void	reset_fps(t_vars *vars);
+void	init_map_fps(t_vars *vars);
+
+// space_operation_fps_bonus.c
+void	translate_fps(t_vars *vars, double x, double y);
+
+// draw_render_fast_bonus.c
+void	draw_render_fast_00hw(t_vars *vars);
+void	draw_render_fast_0wh0(t_vars *vars);
+void	draw_render_fast_h00w(t_vars *vars);
+void	draw_render_fast_hw00(t_vars *vars);
+void	draw_render_fast(t_vars *vars);
+
+// draw_render_exact_bonus.c
+void	draw_render_exact_00hw(t_vars *vars);
+void	draw_render_exact_0wh0(t_vars *vars);
+void	draw_render_exact_h00w(t_vars *vars);
+void	draw_render_exact_hw00(t_vars *vars);
+void	draw_render_exact(t_vars *vars);
 
 #endif

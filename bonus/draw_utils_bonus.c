@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:07:20 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 14:29:37 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:47:37 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,51 @@ void	draw_rect(t_vars *vars, t_pixel pos, int width, int height)
 		draw_line(vars, pa, pb);
 		y++;
 	}
+}
+
+void	draw_part_polygon(t_vars *vars, t_pixel origin,
+	t_pixel start, t_pixel end)
+{
+	double	dx;
+	double	dy;
+	double	i;
+	double	len;
+	t_pixel	current;
+
+	current = start;
+	if (fabs(end.x - start.x) >= fabs(end.y - start.y))
+		len = fabs(end.x - start.x);
+	else
+		len = fabs(end.y - start.y);
+	if (len == 0)
+		return ;
+	dx = (end.x - start.x) / len;
+	dy = (end.y - start.y) / len;
+	current.x += 0.5;
+	current.y += 0.5;
+	i = 0;
+	while (++i <= len)
+	{
+		draw_line(vars, origin, current);
+		current.x += dx;
+		current.y += dy;
+	}
+}
+
+void	draw_polygon(t_vars *vars, t_pixel *lst, int nb_point, int color)
+{
+	int		i;
+	t_pixel	origin;
+
+	origin = lst[0];
+	origin.color = color;
+	i = 1;
+	while (i < nb_point)
+	{
+		lst[i - 1].color = color;
+		lst[i].color = color;
+		draw_part_polygon(vars, origin, lst[i - 1], lst[i]);
+		i++;
+	}
+	draw_line(vars, origin, lst[i - 1]);
 }

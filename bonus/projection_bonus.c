@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:08:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:49:30 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:47:14 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,28 @@ void	calculate_projection_iso(t_vars *vars)
 			pt = vars->map.map[y][x];
 			vars->map.proj[y][x].x = (pt.x - pt.y);
 			vars->map.proj[y][x].y = (pt.x + pt.y) * sin(0.8) - pt.z;
+			vars->map.proj[y][x].color = pt.color;
+			x++;
+		}
+		y++;
+	}
+}
+
+void	calculate_projection_fps(t_vars *vars)
+{
+	int		x;
+	int		y;
+	t_point	pt;
+
+	y = 0;
+	while (y < vars->map.h)
+	{
+		x = 0;
+		while (x < vars->map.w)
+		{
+			pt = vars->map.map[y][x];
+			vars->map.proj[y][x].x = pt.x;
+			vars->map.proj[y][x].y = 1080.0 / 2.0 - pt.z;
 			vars->map.proj[y][x].color = pt.color;
 			x++;
 		}

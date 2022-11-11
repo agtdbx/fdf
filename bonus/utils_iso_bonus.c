@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:07:45 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 09:26:28 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:27:20 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,4 @@ void	init_map_iso(t_vars *vars)
 	first_translate_iso(vars, -vars->map.zoom * (vars->map.w / 2),
 		-vars->map.zoom * (vars->map.h / 2));
 	translate_iso(vars, 1920.0 / 4.0, 1080.0 / 3.0);
-}
-
-void	draw_render_iso(t_vars *vars)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < vars->map.h)
-	{
-		x = 0;
-		while (x < vars->map.w)
-		{
-			if (x < vars->map.w - 1)
-				draw_line(vars, vars->map.proj[y][x],
-					vars->map.proj[y][x + 1]);
-			if (y < vars->map.h - 1)
-				draw_line(vars, vars->map.proj[y][x],
-					vars->map.proj[y + 1][x]);
-			x++;
-		}
-		y++;
-	}
 }

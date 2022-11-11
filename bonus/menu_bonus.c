@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:37:43 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 08:34:58 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 08:45:44 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,29 @@ void	draw_menu_iso(t_vars *vars, int text_color)
 		"GO TO FPS MODE -> SPACE");
 }
 
+void	draw_menu_fps(t_vars *vars, int text_color)
+{
+	mlx_string_put(vars->mlx, vars->win, 125, 50, text_color, "FPS MODE");
+	mlx_string_put(vars->mlx, vars->win, 70, 100, text_color,
+		"MOVE FRONT -> W");
+	mlx_string_put(vars->mlx, vars->win, 70, 125, text_color,
+		"MOVE BACK  -> S");
+	mlx_string_put(vars->mlx, vars->win, 70, 150, text_color,
+		"MOVE LEFT  -> A");
+	mlx_string_put(vars->mlx, vars->win, 70, 175, text_color,
+		"MOVE RIGHT -> D");
+	mlx_string_put(vars->mlx, vars->win, 70, 200, text_color,
+		"LOOK UP    -> UP");
+	mlx_string_put(vars->mlx, vars->win, 70, 225, text_color,
+		"LOOK DOWN  -> DOWN");
+	mlx_string_put(vars->mlx, vars->win, 70, 250, text_color,
+		"LOOK LEFT  -> LEFT");
+	mlx_string_put(vars->mlx, vars->win, 70, 275, text_color,
+		"LOOK RIGHT -> RIGHT");
+	mlx_string_put(vars->mlx, vars->win, 46, 300, text_color,
+		"GO TO ISO MODE -> SPACE");
+}
+
 void	draw_menu(t_vars *vars)
 {
 	t_pixel	pos;
@@ -46,9 +69,18 @@ void	draw_menu(t_vars *vars)
 	draw_rect(vars, pos, 300, 1080);
 	text_color = create_rgb(200, 200, 200);
 	mlx_string_put(vars->mlx, vars->win, 140, 25, text_color, "MENU");
-	draw_menu_iso(vars, text_color);
-	mlx_string_put(vars->mlx, vars->win, 46, 325, text_color,
+	if (vars->projection_mode == 0)
+		draw_menu_iso(vars, text_color);
+	else
+		draw_menu_fps(vars, text_color);
+	if (vars->draw_fast)
+		mlx_string_put(vars->mlx, vars->win, 46, 325, text_color,
+			"DRAW EXACT     -> F");
+	else
+		mlx_string_put(vars->mlx, vars->win, 46, 325, text_color,
+			"DRAW FAST      -> F");
+	mlx_string_put(vars->mlx, vars->win, 46, 350, text_color,
 		"CLOSE MENU     -> TAB");
-	mlx_string_put(vars->mlx, vars->win, 70, 350, text_color,
+	mlx_string_put(vars->mlx, vars->win, 70, 375, text_color,
 		"EXIT       -> ESCAPE");
 }
