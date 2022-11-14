@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:33:14 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/02 17:07:01 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:59:43 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	free_buffer(char **buffer, int end_file);
 int		get_end_line(char *buffer);
 char	*read_and_check(char *buffer, char *read_buffer, int *read_len, int fd);
-char	*complete_buffer(char *buffer, char *read_buffer, int *end_file, int fd);
+char	*complete_buffer(char *buffer, char *read_buffer,
+			int *end_file, int fd);
 void	buffer_shift(char *buffer, int shift);
 char	*get_next_line(int fd);
 

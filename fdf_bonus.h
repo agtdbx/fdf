@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:51:30 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:58:33 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,6 @@ void	rotate_fps(t_vars *vars, double angle, char c);
 
 // utils_iso_bonus.c
 void	key_iso(int keycode, t_vars *vars);
-void	modify_alt(t_vars *vars, double alt);
-void	change_high_iso(t_vars *vars, double alt);
 void	reset_iso(t_vars *vars);
 void	init_map_iso(t_vars *vars);
 
