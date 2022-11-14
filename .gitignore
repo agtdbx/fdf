@@ -1,0 +1,7 @@
+*.o
+*/*.o
+fdf
+libft/libft.a
+maps
+maps/*
+*.fdf
