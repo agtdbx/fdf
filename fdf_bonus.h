@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:58:33 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:20:42 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int		smouth_color(t_pixel start, t_pixel end, t_pixel current);
 void	draw_pixel(t_data data, int x, int y, int color);
 void	draw_line(t_vars *vars, t_pixel start, t_pixel end);
 void	draw_rect(t_vars *vars, t_pixel pos, int width, int height);
+void	draw_part_polygon(t_vars *vars, t_pixel origin,
+			t_pixel start, t_pixel end);
 void	draw_polygon(t_vars *vars, t_pixel *lst, int nb_point, int color);
 
 // draw_render_fast_bonus.c
