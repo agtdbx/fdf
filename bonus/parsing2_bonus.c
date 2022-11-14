@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:00:46 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/10 09:10:12 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:26:45 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,27 @@ void	add_line(t_vars *vars, t_point *line)
 	free(vars->map.cpymap);
 	vars->map.cpymap = new_map;
 	vars->map.h++;
+}
+
+void	error_parse_map(t_vars *vars, char **split_result, t_point *tab)
+{
+	int	i;
+
+	i = 0;
+	while (vars->map.cpymap[i])
+	{
+		free(vars->map.cpymap[i]);
+		i++;
+	}
+	free(vars->map.cpymap);
+	i = 0;
+	while (split_result[i] != NULL)
+	{
+		free(split_result[i]);
+		i++;
+	}
+	free(split_result);
+	free(tab);
+	ft_putstr_fd("Map error\n", 2);
+	exit(-1);
 }

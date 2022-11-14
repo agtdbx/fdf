@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:33:55 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:39:50 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv);
 // parsing2.c
 t_point	*add_value(t_point *tab, int size, t_point value);
 void	add_line(t_vars *vars, t_point *line);
-int		value_of_char(char c, char *base);
-int		atoi_hex(char *nptr, char *base);
+void	error_parse_map(t_vars *vars, char **split_result, t_point *tab);
 
 // utils.c
 void	free_vars(t_vars *vars);

@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/08 08:52:00 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/14 15:32:30 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,6 @@ SRC =	ft_isalpha.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 		gnl.c \
-		gnl_utils.c \
 		printf.c \
 		printf_utils1.c \
 		printf_utils2.c

@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:34:33 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:47:38 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 t_point	split_element_to_map_point(int x, int y, char *element)
 {
 	t_point	mp;
+	int		r;
+	int		g;
+	int		b;
 
 	mp.x = x;
 	mp.y = y;
 	mp.z = atoi(element);
-	mp.color = create_rgb(255 + mp.z, 255 + mp.z, 255 - mp.z);
+	r = 255 * (mp.z > 3 && mp.z <= 7) + mp.z * (mp.z > 100);
+	g = (200 - mp.z) * (mp.z > 7 && mp.z <= 100) + 100 *(mp.z <= 3)
+		+ 255 * (mp.z > 3 && mp.z <= 7) + mp.z * (mp.z > 100);
+	b = (255 - mp.z) * (mp.z <= 3) + mp.z * (mp.z > 100);
+	mp.color = create_rgb(r, g, b);
 	return (mp);
 }
 
@@ -41,6 +48,8 @@ void	parse_line(t_vars *vars, char **split_result)
 	}
 	if (vars->map.w == 0)
 		vars->map.w = i;
+	else if (vars->map.w != i)
+		error_parse_map(vars, split_result, tab);
 	add_line(vars, tab);
 }
 
@@ -54,11 +63,9 @@ int	get_line(t_vars *vars, int fd)
 	if (line == NULL)
 		return (0);
 	split_result = ft_split(line, ' ');
+	free(line);
 	if (split_result == NULL)
-	{
-		free(line);
 		return (0);
-	}
 	parse_line(vars, split_result);
 	i = 0;
 	while (split_result[i] != NULL)
@@ -67,7 +74,6 @@ int	get_line(t_vars *vars, int fd)
 		i++;
 	}
 	free(split_result);
-	free(line);
 	return (1);
 }
 

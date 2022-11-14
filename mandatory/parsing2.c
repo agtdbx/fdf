@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:00:46 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:34:38 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:42:43 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,33 +55,25 @@ void	add_line(t_vars *vars, t_point *line)
 	vars->map.h++;
 }
 
-int	value_of_char(char c, char *base)
+void	error_parse_map(t_vars *vars, char **split_result, t_point *tab)
 {
 	int	i;
 
 	i = 0;
-	while (base[i] != '\0')
+	while (vars->map.map[i])
 	{
-		if (base[i] == c)
-			return (i);
+		free(vars->map.map[i]);
 		i++;
 	}
-	return (0);
-}
-
-int	atoi_hex(char *nptr, char *base)
-{
-	int		i;
-	long	res;
-
+	free(vars->map.map);
 	i = 0;
-	res = 0;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	while (nptr[i] != '\0')
+	while (split_result[i] != NULL)
 	{
-		res = res * 16 + value_of_char(nptr[i], base);
+		free(split_result[i]);
 		i++;
 	}
-	return (res);
+	free(split_result);
+	free(tab);
+	ft_putstr_fd("Map error\n", 2);
+	exit(-1);
 }

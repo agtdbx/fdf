@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:59:13 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:25:13 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	parse_line(t_vars *vars, char **split_result)
 	}
 	if (vars->map.w == 0)
 		vars->map.w = i;
+	else if (vars->map.w != i)
+		error_parse_map(vars, split_result, tab);
 	add_line(vars, tab);
 }
 
@@ -61,11 +63,9 @@ int	get_line(t_vars *vars, int fd)
 	if (line == NULL)
 		return (0);
 	split_result = ft_split(line, ' ');
+	free(line);
 	if (split_result == NULL)
-	{
-		free(line);
 		return (0);
-	}
 	parse_line(vars, split_result);
 	i = 0;
 	while (split_result[i] != NULL)
@@ -74,7 +74,6 @@ int	get_line(t_vars *vars, int fd)
 		i++;
 	}
 	free(split_result);
-	free(line);
 	return (1);
 }
 
@@ -85,7 +84,7 @@ t_vars	get_map_from_agr(t_vars *vars, char **argv)
 
 	vars->map.w = 0;
 	vars->map.h = 0;
-	vars->map.cpymap = malloc(sizeof(int *));
+	vars->map.cpymap = malloc(sizeof(t_point *));
 	if (vars->map.cpymap == NULL)
 		return (*vars);
 	vars->map.cpymap[0] = NULL;
