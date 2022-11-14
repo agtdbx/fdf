@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/14 15:27:18 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/14 16:11:57 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,20 +55,24 @@ INCLUDES = -I. -I/usr/include -Imlx_linux -Ilibft
 
 $(NAME): $(OBJ)
 	@cd libft && make
+	@cd mlx_linux && make
 	$(CC) $^ $(LIBFLAGS) $(LIBFTFLAGS) -o $@
 
 all : $(NAME)
 
 clean :
 	@cd libft && make clean
+	@cd mlx_linux && make clean
 	rm -f $(OBJ) $(OBJ_BONUS)
 
 fclean : clean
 	@cd libft && make fclean
+	@cd mlx_linux && make clean
 	rm -f $(NAME)
 
 re : fclean $(NAME)
 	@cd libft && make re
+	@cd mlx_linux && make clean && make
 
 bonus :
 	@make BONUS=42

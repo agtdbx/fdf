@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:56:41 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 15:47:38 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:16:11 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse_line(t_vars *vars, char **split_result)
 	}
 	if (vars->map.w == 0)
 		vars->map.w = i;
-	else if (vars->map.w != i)
+	else if (vars->map.w > i)
 		error_parse_map(vars, split_result, tab);
 	add_line(vars, tab);
 }
