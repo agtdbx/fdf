@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:07:20 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 10:37:10 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 12:22:25 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw_line(t_vars *vars, t_pixel start, t_pixel end)
 	current.x += 0.5;
 	current.y += 0.5;
 	i = 0;
-	while (++i <= len)
+	while (++i <= len + 1)
 	{
 		draw_pixel(vars->img, current.x, current.y,
 			smouth_color(start, end, current));

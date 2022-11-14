@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 11:20:42 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:01:14 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ typedef struct s_data {
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 	int		color;
 }	t_point;
 
 typedef struct s_pixel
 {
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 	int		color;
 }	t_pixel;
 
@@ -59,13 +59,13 @@ typedef struct s_map
 	t_pixel	**proj;
 	int		w;
 	int		h;
-	double	x;
-	double	y;
-	double	alt;
-	double	angle_x;
-	double	angle_y;
-	double	angle_z;
-	double	zoom;
+	float	x;
+	float	y;
+	float	alt;
+	float	angle_x;
+	float	angle_y;
+	float	angle_z;
+	float	zoom;
 	int		redraw;
 	int		autorotation;
 }	t_map;
@@ -106,14 +106,12 @@ void	draw_render_fast_00hw(t_vars *vars);
 void	draw_render_fast_0wh0(t_vars *vars);
 void	draw_render_fast_h00w(t_vars *vars);
 void	draw_render_fast_hw00(t_vars *vars);
-void	draw_render_fast(t_vars *vars);
 
 // draw_render_exact_bonus.c
 void	draw_render_exact_00hw(t_vars *vars);
 void	draw_render_exact_0wh0(t_vars *vars);
 void	draw_render_exact_h00w(t_vars *vars);
 void	draw_render_exact_hw00(t_vars *vars);
-void	draw_render_exact(t_vars *vars);
 
 // menu_bonus.c
 void	draw_menu_iso(t_vars *vars, int text_color);
@@ -127,31 +125,35 @@ void	calculate_projection_iso(t_vars *vars);
 void	calculate_projection_fps(t_vars *vars);
 
 // space_rotation_bonus.c
-void	apply_rotation_x(t_vars *vars, double angle);
-void	apply_rotation_y(t_vars *vars, double angle);
-void	apply_rotation_z(t_vars *vars, double angle);
+void	apply_rotation_x(t_vars *vars, float angle);
+void	apply_rotation_y(t_vars *vars, float angle);
+void	apply_rotation_z(t_vars *vars, float angle);
 
 // space_operation_iso_bonus.c
-void	first_translate_iso(t_vars *vars, double x, double y);
-void	translate_iso(t_vars *vars, double x, double y);
+void	first_translate_iso(t_vars *vars, float x, float y);
+void	translate_iso(t_vars *vars, float x, float y);
 void	first_zoom(t_vars *vars);
-void	zoom_iso(t_vars *vars, double zoom);
-void	rotate_iso(t_vars *vars, double angle, char c);
+void	zoom_iso(t_vars *vars, float zoom);
+void	rotate_iso(t_vars *vars, float angle, char c);
 
 // space_operation_fps_bonus.c
-void	translate_fps(t_vars *vars, double x, double y);
-void	zoom_fps(t_vars *vars, double zoom);
-void	rotate_fps(t_vars *vars, double angle, char c);
+void	translate_fps(t_vars *vars, float x, float y);
+void	zoom_fps(t_vars *vars, float zoom);
+void	rotate_fps(t_vars *vars, float angle, char c);
 
 // utils_iso_bonus.c
 void	key_iso(int keycode, t_vars *vars);
 void	reset_iso(t_vars *vars);
 void	init_map_iso(t_vars *vars);
+void	draw_render_fast_iso(t_vars *vars);
+void	draw_render_exact_iso(t_vars *vars);
 
 // utils_fps_bonus.c
 void	key_fps(int keycode, t_vars *vars);
 void	reset_fps(t_vars *vars);
 void	init_map_fps(t_vars *vars);
+void	draw_render_fast_fps(t_vars *vars);
+void	draw_render_exact_fps(t_vars *vars);
 
 // parsing_bonus.c
 t_point	split_element_to_map_point(int x, int y, char *element);

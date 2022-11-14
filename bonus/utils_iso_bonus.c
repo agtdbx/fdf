@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:07:45 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:55:43 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:04:20 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,52 @@ void	init_map_iso(t_vars *vars)
 	first_translate_iso(vars, -vars->map.zoom * (vars->map.w / 2),
 		-vars->map.zoom * (vars->map.h / 2));
 	translate_iso(vars, 1920.0 / 4.0, 1080.0 / 3.0);
+}
+
+void	draw_render_fast_iso(t_vars *vars)
+{
+	int	y00;
+	int	y0w;
+	int	yh0;
+	int	yhw;
+
+	y00 = (vars->map.map[0][0].x + vars->map.map[0][0].y) * SIN8;
+	y0w = (vars->map.map[0][vars->map.w - 1].x
+			+ vars->map.map[0][vars->map.w - 1].y) * SIN8;
+	yh0 = (vars->map.map[vars->map.h - 1][0].x
+			+ vars->map.map[vars->map.h - 1][0].y) * SIN8;
+	yhw = (vars->map.map[vars->map.h - 1][vars->map.w - 1].x
+			+ vars->map.map[vars->map.h - 1][vars->map.w - 1].y) * SIN8;
+	if (y00 <= y0w && y00 <= yh0)
+		draw_render_fast_00hw(vars);
+	else if (yh0 <= y00 && yh0 <= yhw)
+		draw_render_fast_h00w(vars);
+	else if (yhw <= yh0 && yhw <= y0w)
+		draw_render_fast_hw00(vars);
+	else if (y0w <= yhw && y0w <= y00)
+		draw_render_fast_0wh0(vars);
+}
+
+void	draw_render_exact_iso(t_vars *vars)
+{
+	int	y00;
+	int	y0w;
+	int	yh0;
+	int	yhw;
+
+	y00 = (vars->map.map[0][0].x + vars->map.map[0][0].y) * SIN8;
+	y0w = (vars->map.map[0][vars->map.w - 1].x
+			+ vars->map.map[0][vars->map.w - 1].y) * SIN8;
+	yh0 = (vars->map.map[vars->map.h - 1][0].x
+			+ vars->map.map[vars->map.h - 1][0].y) * SIN8;
+	yhw = (vars->map.map[vars->map.h - 1][vars->map.w - 1].x
+			+ vars->map.map[vars->map.h - 1][vars->map.w - 1].y) * SIN8;
+	if (y00 <= y0w && y00 <= yh0)
+		draw_render_exact_00hw(vars);
+	else if (yh0 <= y00 && yh0 <= yhw)
+		draw_render_exact_h00w(vars);
+	else if (yhw <= yh0 && yhw <= y0w)
+		draw_render_exact_hw00(vars);
+	else if (y0w <= yhw && y0w <= y00)
+		draw_render_exact_0wh0(vars);
 }

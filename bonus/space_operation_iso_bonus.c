@@ -6,13 +6,13 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:37:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 12:28:43 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:59:04 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	first_translate_iso(t_vars *vars, double x, double y)
+void	first_translate_iso(t_vars *vars, float x, float y)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ void	first_translate_iso(t_vars *vars, double x, double y)
 	vars->map.redraw = 1;
 }
 
-void	translate_iso(t_vars *vars, double x, double y)
+void	translate_iso(t_vars *vars, float x, float y)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ void	first_zoom(t_vars *vars)
 {
 	int		i;
 	int		j;
-	double	zoooooooooom;
+	float	zoooooooooom;
 
 	zoooooooooom = 1080.0 / vars->map.w;
 	i = 0;
@@ -85,12 +85,12 @@ void	first_zoom(t_vars *vars)
 	vars->map.zoom = zoooooooooom;
 }
 
-void	zoom_iso(t_vars *vars, double zoom)
+void	zoom_iso(t_vars *vars, float zoom)
 {
 	int		i;
 	int		j;
-	double	tmp_x;
-	double	tmp_y;
+	float	tmp_x;
+	float	tmp_y;
 
 	tmp_x = vars->map.x;
 	tmp_y = vars->map.y;
@@ -114,10 +114,10 @@ void	zoom_iso(t_vars *vars, double zoom)
 	vars->map.redraw = 1;
 }
 
-void	rotate_iso(t_vars *vars, double angle, char c)
+void	rotate_iso(t_vars *vars, float angle, char c)
 {
-	double	tmp_x;
-	double	tmp_y;
+	float	tmp_x;
+	float	tmp_y;
 
 	tmp_x = vars->map.x;
 	tmp_y = vars->map.y;

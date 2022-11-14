@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 08:26:18 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 11:43:31 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:55:24 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,25 +110,4 @@ void	draw_render_exact_hw00(t_vars *vars)
 		}
 		y--;
 	}
-}
-
-void	draw_render_exact(t_vars *vars)
-{
-	int	y00;
-	int	y0w;
-	int	yh0;
-	int	yhw;
-
-	y00 = vars->map.proj[0][0].y;
-	y0w = vars->map.proj[0][vars->map.w - 1].y;
-	yh0 = vars->map.proj[vars->map.h - 1][0].y;
-	yhw = vars->map.proj[vars->map.h - 1][vars->map.w - 1].y;
-	if (y00 <= yhw && yh0 <= y0w)
-		draw_render_exact_00hw(vars);
-	else if (y00 <= yhw && yh0 > y0w)
-		draw_render_exact_0wh0(vars);
-	else if (y00 > yhw && yh0 <= y0w)
-		draw_render_exact_h00w(vars);
-	else if (y00 > yhw && yh0 > y0w)
-		draw_render_exact_hw00(vars);
 }

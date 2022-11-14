@@ -6,13 +6,13 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:01:40 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 10:20:38 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:59:13 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	translate_fps(t_vars *vars, double x, double y)
+void	translate_fps(t_vars *vars, float x, float y)
 {
 	int	i;
 	int	j;
@@ -34,12 +34,12 @@ void	translate_fps(t_vars *vars, double x, double y)
 	vars->map.redraw = 1;
 }
 
-void	zoom_fps(t_vars *vars, double zoom)
+void	zoom_fps(t_vars *vars, float zoom)
 {
 	int		i;
 	int		j;
-	double	tmp_x;
-	double	tmp_y;
+	float	tmp_x;
+	float	tmp_y;
 
 	tmp_x = vars->map.x;
 	tmp_y = vars->map.y;
@@ -63,10 +63,10 @@ void	zoom_fps(t_vars *vars, double zoom)
 	vars->map.redraw = 1;
 }
 
-void	rotate_fps(t_vars *vars, double angle, char c)
+void	rotate_fps(t_vars *vars, float angle, char c)
 {
-	double	tmp_x;
-	double	tmp_y;
+	float	tmp_x;
+	float	tmp_y;
 
 	tmp_x = vars->map.x;
 	tmp_y = vars->map.y;

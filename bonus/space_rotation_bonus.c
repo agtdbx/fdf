@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   space_rotation_iso_bonus.c                         :+:      :+:    :+:   */
+/*   space_rotation_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 10:52:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 10:01:24 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:58:59 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	apply_rotation_x(t_vars *vars, double angle)
+void	apply_rotation_x(t_vars *vars, float angle)
 {
 	int		i;
 	int		j;
@@ -37,7 +37,7 @@ void	apply_rotation_x(t_vars *vars, double angle)
 	vars->map.angle_x += angle;
 }
 
-void	apply_rotation_y(t_vars *vars, double angle)
+void	apply_rotation_y(t_vars *vars, float angle)
 {
 	int		i;
 	int		j;
@@ -62,7 +62,7 @@ void	apply_rotation_y(t_vars *vars, double angle)
 	vars->map.angle_y += angle;
 }
 
-void	apply_rotation_z(t_vars *vars, double angle)
+void	apply_rotation_z(t_vars *vars, float angle)
 {
 	int		i;
 	int		j;

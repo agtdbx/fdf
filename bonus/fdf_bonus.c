@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:15 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:55:50 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:01:06 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,14 @@ int	render(t_vars *vars)
 		p.color = 0;
 		vars->map.redraw = 0;
 		draw_rect(vars, p, 1920, 1080);
-		if (vars->draw_fast)
-			draw_render_fast(vars);
+		if (vars->draw_fast && vars->projection_mode == 0)
+			draw_render_fast_iso(vars);
+		else if (vars->draw_fast && vars->projection_mode == 1)
+			draw_render_fast_fps(vars);
+		else if (!vars->draw_fast && vars->projection_mode == 0)
+			draw_render_exact_iso(vars);
 		else
-			draw_render_exact(vars);
+			draw_render_exact_fps(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 		if (vars->draw_menu)
 			draw_menu(vars);

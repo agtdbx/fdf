@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 17:07:20 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 10:17:14 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:59:27 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	draw_pixel(t_data data, int x, int y, int color)
 
 void	draw_line(t_vars *vars, t_pixel start, t_pixel end)
 {
-	double	dx;
-	double	dy;
-	double	i;
-	double	len;
+	float	dx;
+	float	dy;
+	float	i;
+	float	len;
 	t_pixel	current;
 
 	current = start;
@@ -42,7 +42,7 @@ void	draw_line(t_vars *vars, t_pixel start, t_pixel end)
 	current.x += 0.5;
 	current.y += 0.5;
 	i = 0;
-	while (++i <= len)
+	while (++i <= len + 1)
 	{
 		draw_pixel(vars->img, current.x, current.y,
 			smouth_color(start, end, current));
@@ -74,10 +74,10 @@ void	draw_rect(t_vars *vars, t_pixel pos, int width, int height)
 void	draw_part_polygon(t_vars *vars, t_pixel origin,
 	t_pixel start, t_pixel end)
 {
-	double	dx;
-	double	dy;
-	double	i;
-	double	len;
+	float	dx;
+	float	dy;
+	float	i;
+	float	len;
 	t_pixel	current;
 
 	current = start;
