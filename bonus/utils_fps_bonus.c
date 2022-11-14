@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:58:10 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 11:15:21 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/11 14:15:52 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	key_fps(int keycode, t_vars *vars)
 {
 	if (keycode == XK_w)
-		zoom_fps(vars, 1.02);
+		zoom_fps(vars, 1.05);
 	else if (keycode == XK_s)
-		zoom_fps(vars, 1.0 / 1.02);
+		zoom_fps(vars, 1.0 / 1.05);
 	else if (keycode == XK_a)
 		translate_fps(vars, 10.0, 0.0);
 	else if (keycode == XK_d)
@@ -47,11 +47,6 @@ void	reset_fps(t_vars *vars)
 
 void	init_map_fps(t_vars *vars)
 {
-	vars->cam.x = 0.0;
-	vars->cam.y = 0.0;
-	vars->cam.angle_x = 0;
-	vars->cam.angle_y = 0;
-	vars->cam.angle_z = 0;
 	vars->map.angle_x = 0;
 	vars->map.angle_y = 0;
 	vars->map.angle_z = 0;

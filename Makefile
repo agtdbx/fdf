@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/11 11:39:25 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/11 14:07:13 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,7 @@ SRC_BONUS =	bonus/fdf_bonus.c \
 			bonus/utils_fps_bonus.c \
 			bonus/space_operation_fps_bonus.c \
 			bonus/draw_render_fast_bonus.c \
-			bonus/draw_render_exact_bonus.c \
-			bonus/camera_bonus.c
+			bonus/draw_render_exact_bonus.c
 
 OBJ = ${SRC:.c=.o}
 ifdef BONUS
@@ -46,7 +45,7 @@ endif
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math
 LIBFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFTFLAGS = -Llibft -lft
 INCLUDES = -I. -I/usr/include -Imlx_linux -Ilibft

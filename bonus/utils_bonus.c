@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:01:39 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 11:39:07 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:14:39 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void	draw_hide_behind(t_vars *vars, int pos, int next_y, int next_x)
 	ps[1] = vars->map.proj[y][x + next_x];
 	ps[2] = vars->map.proj[y + next_y][x + next_x];
 	ps[3] = vars->map.proj[y + next_y][x];
-
 	draw_polygon(vars, ps, 4, 0);
 }

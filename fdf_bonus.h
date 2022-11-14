@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/11 10:59:25 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:51:30 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define PI 3.1415926535
+# define PI 3.1415
+# define SIN8 0.7173
 
 typedef struct s_data {
 	void	*img;
@@ -51,16 +52,6 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-typedef struct s_camera
-{
-	double	x;
-	double	y;
-	double	z;
-	double	angle_x;
-	double	angle_y;
-	double	angle_z;
-}	t_camera;
-
 typedef struct s_map
 {
 	t_point	**map;
@@ -85,7 +76,6 @@ typedef struct s_vars
 	void		*win;
 	t_data		img;
 	t_map		map;
-	t_camera	cam;
 	int			draw_menu;
 	int			projection_mode;
 	int			draw_fast;
@@ -126,6 +116,7 @@ void	draw_render_exact(t_vars *vars);
 // menu_bonus.c
 void	draw_menu_iso(t_vars *vars, int text_color);
 void	draw_menu_fps(t_vars *vars, int text_color);
+void	draw_always(t_vars *vars, int text_color);
 void	draw_menu(t_vars *vars);
 
 // projection_bonus.c
@@ -152,6 +143,8 @@ void	rotate_fps(t_vars *vars, double angle, char c);
 
 // utils_iso_bonus.c
 void	key_iso(int keycode, t_vars *vars);
+void	modify_alt(t_vars *vars, double alt);
+void	change_high_iso(t_vars *vars, double alt);
 void	reset_iso(t_vars *vars);
 void	init_map_iso(t_vars *vars);
 
