@@ -6,7 +6,7 @@
 #    By: aderouba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 12:24:51 by aderouba          #+#    #+#              #
-#    Updated: 2022/11/14 16:22:52 by aderouba         ###   ########.fr        #
+#    Updated: 2022/11/15 08:46:54 by aderouba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,9 @@ OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -O3 -ffast-math -g
-LIBFLAGS = -Lmlx_linux_42 -lmlx_Linux_42 -L/usr/lib -Imlx_linux_42 -lXext -lX11 -lm -lz
+LIBFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFTFLAGS = -Llibft -lft
-INCLUDES = -I. -I/usr/include -Imlx_linux_42 -Ilibft
+INCLUDES = -I. -I/usr/include -Imlx_linux -Ilibft
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

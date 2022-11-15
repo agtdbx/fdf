@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:25:26 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/14 16:26:11 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/15 08:47:47 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FDF_BONUS_H
 
 # include "libft/libft.h"
-# include "mlx_linux_42/mlx.h"
-# include "mlx_linux_42/mlx_int.h"
+# include "mlx_linux/mlx.h"
+# include "mlx_linux/mlx_int.h"
 # include <math.h>
 # include <fcntl.h>
 
