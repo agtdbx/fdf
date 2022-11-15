@@ -6,7 +6,7 @@
 /*   By: aderouba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:08:56 by aderouba          #+#    #+#             */
-/*   Updated: 2022/11/09 15:07:13 by aderouba         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:39:02 by aderouba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	calculate_projection(t_vars *vars)
 			vars->map.proj[y][x].y = (pt.x + pt.y) * sin(0.8) - pt.z;
 			vars->map.proj[y][x].x += vars->map.x;
 			vars->map.proj[y][x].y += vars->map.y;
-			vars->map.proj[y][x].color = create_rgb(255 + pt.z,
-					255 + pt.z, 255 - pt.z);
+			vars->map.proj[y][x].color = pt.color;
 			x++;
 		}
 		y++;
